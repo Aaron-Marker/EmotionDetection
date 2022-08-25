@@ -5,7 +5,10 @@ import tensorflow as tf
 application = Flask(__name__)
 
 tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
-model = TFAutoModelForSequenceClassification.from_pretrained("./emotionModel/", num_labels=6)
+#from transformers import AutoModel
+
+#model = AutoModel.from_pretrained("AaronMarker/my-awesome-model")
+model = TFAutoModelForSequenceClassification.from_pretrained("AaronMarker/my-awesome-model", num_labels=6)
 #model.load_weights("model")
 classifier = pipeline("text-classification", model = model, tokenizer = tokenizer)
 f = open("demofile.txt", "r")

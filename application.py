@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,redirect, url_for
 from transformers import AutoTokenizer, TFAutoModelForSequenceClassification, pipeline
 import tensorflow as tf
 
@@ -20,15 +20,17 @@ test = f.read()
 
 @application.route('/')
 def home():
+    #if request.method == 'POST':
+    #    sentence = request.form["home"]
     return render_template('site.html')
 
 @application.route('/results/', methods = ['POST', 'GET'])
 def results():
     if request.method == 'GET':
-        return f"The URL /results should not be accessed directly. Try navigating to the root directory."
+        return redirect(url_for('home'))
     if request.method == 'POST':
         sentence = request.form["sentence"]
-        emotions = {'LABEL_0':'sadness', 'LABEL_1':'joy', 'LABEL_2':'love', 'LABEL_3':'anger', 'LABEL_4':'fear', 'LABEL_5':'surprise'}
+        emotions = {'LABEL_0':'Sadness', 'LABEL_1':'Joy', 'LABEL_2':'Love', 'LABEL_3':'Anger', 'LABEL_4':'Fear', 'LABEL_5':'Surprise'}
         prediction = emotions[classifier(sentence)[0]["label"]]
         form_data = [sentence, prediction, test]
         return render_template('data.html',form_data = form_data)

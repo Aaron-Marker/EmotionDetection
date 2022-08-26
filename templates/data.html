@@ -11,26 +11,38 @@
 <body class="w3-black">
 
 <!-- Page Content -->
-<div class="w3-padding-large" id="main">
+<div class="w3-padding-8" id="main">
   <!-- Header/Home -->
   <header class="w3-container w3-padding-16 w3-center w3-black" id="home">
     <h1 class="w3-jumbo"><span class="w3-hide-small">Emotion Detector</span></h1>
-    <div class="w3-content w3-center w3-text-grey" id="about">
-      <p>Enter a Sentence to Have Your Emotion Predicted by AI</p>
-    </div>
   </header>
   
 
-  
   <!-- Contact Section -->
-  <div class="w3-padding-64 w3-content w3-text-grey" id="contact">
-    <div class="w3-content w3-center w3-text-grey" id="about">
-      <p>{{ form_data[0] }}</p>
-      <p>{{ form_data[1] }}</p>
-      <p>{{ form_data[2] }}</p>
-    </div>
-  <!-- End Contact Section -->
+  <div class="w3-content w3-center w3-text-grey w3-padding-4" id="about">
+    <p>{{ form_data[0] }}</p>
+    {% if form_data[1]=="Sadness" %}
+      <img src="https://images.unsplash.com/photo-1577162067354-be7e0589df7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80" width="512">
+    {% elif form_data[1]=="Joy" %}
+      <img src="https://images.unsplash.com/photo-1541689221361-ad95003448dc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" width="512">
+    {% elif form_data[1]=="Love" %}
+      <img src="https://images.unsplash.com/photo-1551298457-c72eced6d0ad?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1228&q=80" width="512">
+    {% elif form_data[1]=="Anger" %}
+      <img src="https://images.unsplash.com/photo-1495594059084-33752639b9c3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" width="512">
+    {% elif form_data[1]=="Fear" %}
+      <img src="https://images.unsplash.com/photo-1453227588063-bb302b62f50b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" width="512">
+    {% elif form_data[1]=="Surprise" %}
+      <img src="https://images.unsplash.com/photo-1529933037705-0d537317ae7b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=430&q=80" width="512">
+    {% endif %}
+    <h1 class="w3-jumbo w3-center"><span class="w3-hide-small">{{ form_data[1] }}</span></h1>
+      
+    <a href="{{ url_for('home') }}" style="text-decoration:none;">
+      <button class="w3-input w3-center w3-light-grey" type="submit">
+        Try Again
+      </button>
+    </a>
   </div>
+  <!-- End Contact Section -->
 
 <!-- END PAGE CONTENT -->
 </div>
